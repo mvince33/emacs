@@ -84,7 +84,11 @@ move the point inside the braces."
   (insert "      xtick={-8, -4, ..., 8}, \n")
   (insert "      ytick={-8, -4, ..., 8}, \n")
   (insert "      minor tick num = 3] \n \n")
-  (insert "    \\addplot[samples = 101, domain = -7.5:7.5, thick, <-> ] {}; \n")
+  (insert "    \\addplot[samples = 101, \n")
+  (insert "              domain = -7.5:7.5, \n")
+  (insert "              thick, \n")
+  (insert "               <->] \n")
+  (insert "    {}; \n")
   (insert "    \\end{axis} \n")
   (insert "  \\end{tikzpicture} \n"))
 
@@ -94,7 +98,8 @@ question in the question environment for the exam class."
   (interactive)
   (insert "  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% New Question")
   (insert " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n \n ")
-  (insert " \\question \n "))
+  (insert " \\question \n ")
+  (backward-char 2))
 
 
 
@@ -102,9 +107,11 @@ question in the question environment for the exam class."
 ;; Math functions
 ;; --------------
 
+;; Needs to be fixed. Function does not behave as
+;; specified in the help comments.
 (defun rand ()
   "Function to return pseudo-random numbers 
-  between 0 and 1 inclusive."
+between 0 and 1 inclusive."
   (interactive)
   ; Generate a random nonnegative integer and scale it 
   ; so that we return a float between 0 and 1.
@@ -118,3 +125,11 @@ interval [-limit, limit]."
     (setq num (+ (random limit) 1))
     (if (< (rand) 0.5) (setq num (* -1 num)) num)
     (insert (number-to-string num))))
+
+(defun gcd (a b)
+  "Function to compute the greatest
+common divisor for integers a and b."
+  ; We require the first argumnet to be the larger one.
+  (if (< a b) (gcd b a))
+  ; The Euclidean Algorithm.
+  (if (= b 0) a (gcd b (mod a b))))
