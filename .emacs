@@ -30,8 +30,8 @@
 (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
 
 ;; Load question bank for writing exams.
-(add-to-list 'load-path "/home/work/.emacs.d/elisp")
-(load-file "questbank.el")
-(load-file "math.el")
-(load-file "keybindings.el")
-(load-file "latex.el")
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(load-file "~/.emacs.d/elisp/questbank.el")
+(load-file "~/.emacs.d/elisp/math.el")
+(load-file "~/.emacs.d/elisp/keybindings.el")
+(load-file "~/.emacs.d/elisp/latex.el")
